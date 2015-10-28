@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <style>
+            .ui-dialog .ui-dialog-titlebar {
+                display: none !important;
+            }
+        </style>
+    </h:head>
+
+    <h:body>
+        <p:dialog visible="true" width="600" height="300">
+            <h:form>
+                <h:panelGrid columns="3">
+                    <h:graphicImage library="imagens" name="logo-vertical.png" style="max-width: 200px; margin: 40px; display: block;"></h:graphicImage>
+                    <p:separator style="height: 250px"></p:separator>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Login"></h:outputLabel>
+                        <p:inputText></p:inputText>
+                        <h:outputLabel value="Senha"></h:outputLabel>
+                        <p:password></p:password>
+                        <h:outputText></h:outputText>
+                        <p:commandButton value="Entrar"></p:commandButton>
+                    </h:panelGrid>
+                </h:panelGrid>
+            </h:form>
+        </p:dialog>
+    </h:body>
+
+</html>
+

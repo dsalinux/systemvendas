@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:p="http://primefaces.org/ui">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="crudTela" required="true" shortDescription="Classe que extenda o CrudTela"></cc:attribute>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <p:toolbar>
+            <p:toolbarGroup>
+                <p:commandButton value="Novo" icon="fa fa-file-o" action="#{cc.attrs.crudTela.novo()}" update="@form"></p:commandButton>
+                <p:commandButton value="Salvar" icon="fa fa-save" action="#{cc.attrs.crudTela.salvar()}" rendered="#{!cc.attrs.crudTela.ehPesquisando()}" update="@form"></p:commandButton>
+                <p:commandButton value="Listar" icon="fa fa-search" action="#{cc.attrs.crudTela.listar()}" rendered="#{cc.attrs.crudTela.ehPesquisando()}" update="@form"></p:commandButton>
+                <p:commandButton value="Cancelar" icon="fa fa-rotate-left" action="#{cc.attrs.crudTela.listar()}" rendered="#{!cc.attrs.crudTela.ehPesquisando()}" update="@form"></p:commandButton>
+            </p:toolbarGroup>
+        </p:toolbar>
+    </cc:implementation>
+</html>

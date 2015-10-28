@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>System Vendas</title>
+        <h:outputStylesheet library="css" name="basico.css"></h:outputStylesheet>
+    </h:head>
+    <h:body>
+        <div id="tudo">
+            <div id="conteudo">
+                <div id="topo">
+                    <div class="menu ui-menu ui-menubar ui-widget ui-widget-content">
+                        <h:form>
+                            <h:graphicImage class="logo" name="logo.png" library="imagens"></h:graphicImage>
+                            <p:menubar style="float: left;margin-top: 2px">
+                                <p:menuitem icon="fa fa-home" value="Home" url="index.jsf"></p:menuitem>
+                                <p:submenu label="Gerenciar" icon="fa fa-gear">
+                                    <p:menuitem value="Usuário" icon="fa fa-user" url="gerenciar-usuario.jsf"></p:menuitem>
+                                    <p:menuitem value="Cidade" icon="fa fa-globe" url="gerenciar-cidade.jsf"></p:menuitem>
+                                </p:submenu>
+                            </p:menubar>
+                        </h:form>
+                    </div>
+                </div>
+                <p:panel>
+                    <div class="titulo-janelas">
+                        <span class="fa #{empty icon?'fa-dollar':icon}"></span> <p>#{empty titulo?'System Vendas':titulo}</p>
+                    </div>
+                    <p:separator></p:separator>
+                    <p:messages autoUpdate="true" showDetail="true"></p:messages>
+                    <ui:insert></ui:insert>
+                </p:panel>
+            </div>
+            <div class="clear"></div>
+            <div id="rodape" class="ui-panel ui-widget ui-widget-content">
+                System Vendas - Versão 1.0 - 3º Info - IFNMG Arinos
+            </div>
+        </div>
+    </h:body>
+</html>
+
