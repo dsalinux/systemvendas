@@ -13,7 +13,8 @@ public class FabricaConexao {
 
     private static Connection conexao;
     private static final String USUARIO = "root";
-    private static final String SENHA = "";
+    private static final String SENHA1 = "";
+    private static final String SENHA2 = "root";
     private static final String URL_CONEXAO = "jdbc:mysql://localhost/";
     private static final String BANCO = "system-vendas";
 
@@ -28,7 +29,11 @@ public class FabricaConexao {
                 if(selecionaDatabase){
                     url+= BANCO;
                 }
-                conexao = DriverManager.getConnection(url, USUARIO, SENHA);
+                try{
+                    conexao = DriverManager.getConnection(url, USUARIO, SENHA1);
+                } catch(SQLException e){
+                    conexao = DriverManager.getConnection(url, USUARIO, SENHA2);
+                }
             }
         } catch (ClassNotFoundException ex) {
             throw new ErroSistema("Drive do banco de dados não encontrado!");
