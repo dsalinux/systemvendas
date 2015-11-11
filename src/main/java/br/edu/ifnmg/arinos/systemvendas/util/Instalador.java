@@ -219,6 +219,11 @@ public class Instalador implements ServletContextListener {
                     s.execute(CREATE_TABLES[i]);
                     System.out.println("Tabela " + i + " criada!");
                 }
+                PreparedStatement psUsuario = FabricaConexao.getConexao().prepareStatement("insert into usuario (nome, login, senha) values (?,?,?)");
+                psUsuario.setString(1, "Admin");
+                psUsuario.setString(2, "admin");
+                psUsuario.setString(3, "123");
+                psUsuario.execute();
                 System.out.println("Banco de dados criado com sucess!");
             }
             FabricaConexao.fecharConexao();
