@@ -29,7 +29,7 @@ public class VendaDAO implements GenericoDAO<Venda> {
             if (entidade.getId() == null) {
                 ps = FabricaConexao.getConexao().prepareStatement("insert into venda (data, observacao, valor_total) values (?,?,?)");
             } else {
-                ps = FabricaConexao.getConexao().prepareStatement("update usuario set data = ?, observacao = ?, valor_total = ? where id = ?");
+                ps = FabricaConexao.getConexao().prepareStatement("update venda set data = ?, observacao = ?, valor_total = ? where id = ?");
                 ps.setInt(4, entidade.getId());
             }
             ps.setDate(1, new java.sql.Date(entidade.getData().getTime()));
@@ -37,7 +37,7 @@ public class VendaDAO implements GenericoDAO<Venda> {
             ps.setFloat(3, entidade.getValor_total());
             ps.execute();
         } catch (SQLException ex) {
-            throw new ErroSistema("Erro ao tentar salvar usuário! " + ex.getMessage());
+            throw new ErroSistema("Erro ao tentar salvar Venda! " + ex.getMessage());
         }
     }
 
@@ -45,7 +45,7 @@ public class VendaDAO implements GenericoDAO<Venda> {
     public void deletar(Venda entidade) throws ErroNegocio, ErroSistema {
         try {
             PreparedStatement ps;
-            ps = FabricaConexao.getConexao().prepareStatement("delete from usuario where id = ?");
+            ps = FabricaConexao.getConexao().prepareStatement("delete from venda where id = ?");
             ps.setInt(1, entidade.getId());
             ps.execute();
         } catch (SQLException ex) {
@@ -58,7 +58,7 @@ public class VendaDAO implements GenericoDAO<Venda> {
         List<Venda> entidades = new ArrayList<Venda>();
         try {
             PreparedStatement ps;
-            ps = FabricaConexao.getConexao().prepareStatement("select * from usuario");
+            ps = FabricaConexao.getConexao().prepareStatement("select * from venda");
             ResultSet resultado = ps.executeQuery();
             while(resultado.next()){
                 Venda entidade = new Venda();

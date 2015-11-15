@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:sv="http://xmlns.jcp.org/jsf/composite/componentes"
+      template="template.xhtml">
+    
+    <h:head></h:head>
+    <ui:param name="icon" value="fa-user"></ui:param>
+    <ui:param name="titulo" value="Gerenciar Venda"></ui:param>
+    
+    <h:form>
+        <sv:tolbarCrud crudTela="#{vendaTela}"/>
+        <h:panelGrid columns="1" rendered="#{!vendaTela.ehPesquisando()}">
+            <h:outputLabel value="Data"></h:outputLabel>
+            <p:inputText value="#{vendaTela.entidade.data}"></p:inputText>
+            <h:outputLabel value="Observação"></h:outputLabel>
+            <p:inputText value="#{vendaTela.entidade.observacao}"></p:inputText>
+            <h:outputLabel value="Valor Total"></h:outputLabel>
+            <p:inputText value="#{vendaTela.entidade.valor_total}"></p:inputText>
+            
+        </h:panelGrid>
+        <p:dataTable value="#{vendaTela.listaComEntidades}" var="ent" rendered="#{vendaTela.ehPesquisando()}" emptyMessage="Nada na lista ainda!">
+            <p:column>
+                <p:commandButton icon="fa fa-pencil" action="#{vendaTela.editar(ent)}" update="@form"></p:commandButton>
+                <p:commandButton icon="fa fa-trash-o" action="#{vendaTela.deletar(ent)}" update="@form"></p:commandButton>
+            </p:column>
+            <p:column headerText="Nome" sortBy="#{ent.data}" filterBy="#{ent.data}">
+                #{ent.data}
+            </p:column>
+             <p:column headerText="Observação" sortBy="#{ent.observacao}" filterBy="#{ent.observacao}">
+                #{ent.observacao}
+                 <p:column headerText="Valor Total" sortBy="#{ent.valor_total}" filterBy="#{ent.valor_total}">
+                #{ent.valor_total}
+                 
+            </p:column>
+            </p:column>
+        </p:dataTable>
+    </h:form>
+</ui:decorate>
+
+
