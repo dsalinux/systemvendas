@@ -19,7 +19,7 @@ public class MovimentoCaixaDAO implements GenericoDAO<MovimentoCaixa> {
             if (StringUtil.ehVazio(entidade.getDescricao())) {
                 throw new ErroNegocio("Descrição !");
             }
-            if (StringUtil.ehVazio(entidade.getTipoMovimento())) {
+            if (StringUtil.ehVazio(entidade.getTipo_movimento())) {
                 throw new ErroNegocio("Qual o tipo do movimento?");
             }
             if (StringUtil.ehVazio(entidade.getValor())) {
@@ -28,13 +28,13 @@ public class MovimentoCaixaDAO implements GenericoDAO<MovimentoCaixa> {
             
             PreparedStatement ps;
             if (entidade.getId() == null) {
-                ps = FabricaConexao.getConexao().prepareStatement("insert into MovimentoCaixa (descricao,tipo_movimento,valor, data) values (?,?,?,?)");
+                ps = FabricaConexao.getConexao().prepareStatement("insert into movimento_caixa (descricao,tipo_movimento,valor, data) values (?,?,?,?)");
             } else {
-                ps = FabricaConexao.getConexao().prepareStatement("update MovimentoCaixa set descricao = ?, tipo_movimento = ?, valor = ?, data =? where id = ?");
+                ps = FabricaConexao.getConexao().prepareStatement("update movimento_caixa set descricao = ?, tipo_movimento = ?, valor = ?, data =? where id = ?");
                 ps.setInt(4, entidade.getId());
             }
             ps.setString(1, entidade.getDescricao());
-            ps.setString(2, entidade.getTipoMovimento());
+            ps.setString(2, entidade.getTipo_movimento());
             ps.setString(3, entidade.getValor());
             ps.execute();
         } catch (SQLException ex) {
@@ -46,7 +46,7 @@ public class MovimentoCaixaDAO implements GenericoDAO<MovimentoCaixa> {
     public void deletar(MovimentoCaixa entidade) throws ErroNegocio, ErroSistema {
         try {
             PreparedStatement ps;
-            ps = FabricaConexao.getConexao().prepareStatement("delete from Movimento Caixa where id = ?");
+            ps = FabricaConexao.getConexao().prepareStatement("delete from movimento_caixa where id = ?");
             ps.setInt(1, entidade.getId());
             ps.execute();
         } catch (SQLException ex) {
@@ -65,7 +65,7 @@ public class MovimentoCaixaDAO implements GenericoDAO<MovimentoCaixa> {
                 MovimentoCaixa entidade = new MovimentoCaixa();
                 entidade.setId(resultado.getInt("id"));
                 entidade.setDescricao(resultado.getString("descricao"));
-                entidade.setTipoMovimento(resultado.getString("tipo_movimento"));
+                entidade.setTipo_movimento(resultado.getString("tipo_movimento"));
                 entidade.setValor(resultado.getString("valor"));
                 entidades.add(entidade);
             }
