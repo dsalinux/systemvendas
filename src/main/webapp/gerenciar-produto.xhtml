@@ -16,13 +16,13 @@
         <h:panelGrid columns="1" rendered="#{!produtoTela.ehPesquisando()}">
             <h:outputLabel value="Nome"></h:outputLabel>
             <p:inputText value="#{produtoTela.entidade.nome}"></p:inputText>
-            <h:outputLabel value="DescriÃ§Ã£o"></h:outputLabel>
+            <h:outputLabel value="Descricao"></h:outputLabel>
             <p:inputText value="#{produtoTela.entidade.descricao}"></p:inputText>
-            <h:outputLabel value="PreÃ§o"></h:outputLabel>
+            <h:outputLabel value="Preco"></h:outputLabel>
             <p:inputText value="#{produtoTela.entidade.preco}"></p:inputText>
             <h:outputLabel value="Estoque Atual"></h:outputLabel>
             <p:inputText value="#{produtoTela.entidade.estoque_atual}"></p:inputText>
-            <h:outputLabel value="Estoque MÃ­nimo"></h:outputLabel>
+            <h:outputLabel value="Estoque Maximo"></h:outputLabel>
             <p:inputText value="#{produtoTela.entidade.estoque_minimo}"></p:inputText>
             <h:outputLabel value="Unidade"></h:outputLabel>
             <p:inputText value="#{produtoTela.entidade.unidade}"></p:inputText>
@@ -39,13 +39,13 @@
              <p:column headerText="Descricao" sortBy="#{ent.descricao}" filterBy="#{ent.descricao}">
                 #{ent.descricao}
                  </p:column>
-                 <p:column headerText="PreÃ§o" sortBy="#{ent.preco}" filterBy="#{ent.preco}">
+                 <p:column headerText="Preco" sortBy="#{ent.preco}" filterBy="#{ent.preco}">
                 #{ent.preco}
                  </p:column>
                  <p:column headerText="Estoque Atual" sortBy="#{ent.estoque_atual}" filterBy="#{ent.estoque_atual}">
                 #{ent.estoque_atual}
                  </p:column>
-                 <p:column headerText="Estoque MÃ­nimo" sortBy="#{ent.estoque_minimo}" filterBy="#{ent.estoque_minimo}">
+                 <p:column headerText="Estoque Maximo" sortBy="#{ent.estoque_minimo}" filterBy="#{ent.estoque_minimo}">
                 #{ent.estoque_minimo}
                  </p:column>
                  <p:column headerText="Unidade" sortBy="#{ent.unidade}" filterBy="#{ent.unidade}">
