@@ -6,10 +6,11 @@ import java.util.Objects;
  *
  * @author danilo
  */
-public class Conta {
+public class TipoPessoa {
 
     private Integer id;
     private String nome;
+    
 
     public Integer getId() {
         return id;
@@ -18,7 +19,6 @@ public class Conta {
     public void setId(Integer id) {
         this.id = id;
     }
-   
 
     public String getNome() {
         return nome;
@@ -27,6 +27,7 @@ public class Conta {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
 
     @Override
     public int hashCode() {
@@ -43,7 +44,7 @@ public class Conta {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Conta other = (Conta) obj;
+        final TipoPessoa other = (TipoPessoa) obj;
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }

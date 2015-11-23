@@ -9,18 +9,18 @@
     
     <h:head></h:head>
     <ui:param name="icon" value="fa-user"></ui:param>
-    <ui:param name="titulo" value="Gerenciar Conta"></ui:param>
+    <ui:param name="titulo" value="Gerenciar Tipo Pessoa"></ui:param>
     
     <h:form>
-        <sv:tolbarCrud crudTela="#{contaTela}"/>
-        <h:panelGrid columns="1" rendered="#{!contaTela.ehPesquisando()}">
+        <sv:tolbarCrud crudTela="#{tipoPessoaTela}"/>
+        <h:panelGrid columns="1" rendered="#{!tipoPessoaTela.ehPesquisando()}">
             <h:outputLabel value="Nome"></h:outputLabel>
-            <p:inputText value="#{contaTela.entidade.nome}"></p:inputText>
+            <p:inputText value="#{tipoPessoaTela.entidade.nome}"></p:inputText>
         </h:panelGrid>
-        <p:dataTable value="#{contaTela.listaComEntidades}" var="ent" rendered="#{contaTela.ehPesquisando()}" emptyMessage="Nada na lista ainda!">
+        <p:dataTable value="#{tipoPessoaTela.listaComEntidades}" var="ent" rendered="#{tipoPessoaTela.ehPesquisando()}" emptyMessage="Nada na lista ainda!">
             <p:column>
-                <p:commandButton icon="fa fa-pencil" action="#{contaTela.editar(ent)}" update="@form"></p:commandButton>
-                <p:commandButton icon="fa fa-trash-o" action="#{contaTela.deletar(ent)}" update="@form"></p:commandButton>
+                <p:commandButton icon="fa fa-pencil" action="#{tipoPessoaTela.editar(ent)}" update="@form"></p:commandButton>
+                <p:commandButton icon="fa fa-trash-o" action="#{tipoPessoaTela.deletar(ent)}" update="@form"></p:commandButton>
             </p:column>
             <p:column headerText="Nome" sortBy="#{ent.nome}" filterBy="#{ent.nome}">
                 #{ent.nome}
