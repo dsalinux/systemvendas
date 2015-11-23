@@ -42,7 +42,7 @@ public class ProdutoDAO implements GenericoDAO<Produto> {
             
             PreparedStatement ps;
             if (entidade.getId() == null) {
-                ps = FabricaConexao.getConexao().prepareStatement("insert into produto (nome, descricao, preco, estoque_atual, estoque_minimo, unidade) values (?,?,?,?,?,?,?)");
+                ps = FabricaConexao.getConexao().prepareStatement("insert into produto (nome, descricao, preco, estoque_atual, estoque_minimo, unidade) values (?,?,?,?,?,?)");
             } else {
                 ps = FabricaConexao.getConexao().prepareStatement("update produto set nome = ?, descricao = ?, preco = ?, estoque_atual = ?, estoque_minimo = ?, unidade = ? where id = ?");
                 ps.setInt(7, entidade.getId());
@@ -52,7 +52,7 @@ public class ProdutoDAO implements GenericoDAO<Produto> {
             ps.setFloat(3, entidade.getPreco());
             ps.setFloat(4, entidade.getEstoque_atual());
             ps.setFloat(5, entidade.getEstoque_minimo());
-            ps.setString(3, entidade.getUnidade());
+            ps.setString(6, entidade.getUnidade());
             
             ps.execute();
         } catch (SQLException ex) {
