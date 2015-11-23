@@ -3,7 +3,7 @@ package br.edu.ifnmg.arinos.systemvendas.dao;
 import br.edu.ifnmg.arinos.systemvendas.entidade.Pessoa;
 import br.edu.ifnmg.arinos.systemvendas.util.FabricaConexao;
 import br.edu.ifnmg.arinos.systemvendas.util.StringUtil;
-import br.edu.ifnmg.arinos.systemvendas.util.excecao.ErroPessoa;
+import br.edu.ifnmg.arinos.systemvendas.util.excecao.ErroNegocio;
 import br.edu.ifnmg.arinos.systemvendas.util.excecao.ErroSistema;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
@@ -11,37 +11,40 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PessoaDAO {
-    public void salvar(Pessoa entidade) throws ErroPessoa, ErroSistema {
+
+public class PessoaDAO implements GenericoDAO<Pessoa> {
+
+    @Override
+    public void salvar(Pessoa entidade) throws ErroNegocio, ErroSistema {
         try {
             if (StringUtil.ehVazio(entidade.getNome())) {
-                throw new ErroPessoa("Informe o Nome!");
+                throw new ErroNegocio("Informe o Nome!");
             }
             if (StringUtil.ehVazio(entidade.getCpf())) {
-                throw new ErroPessoa("Informe o CPF!");
+                throw new ErroNegocio("Informe o CPF!");
             }
             if (StringUtil.ehVazio(entidade.getRua())) {
-                throw new ErroPessoa("Informe a sua rua!");
+                throw new ErroNegocio("Informe a sua rua!");
             }
             if (StringUtil.ehVazio(entidade.getNumero())) {
-                throw new ErroPessoa("Informe o numero da sua rua!");
+                throw new ErroNegocio("Informe o numero da sua rua!");
             }
             if (StringUtil.ehVazio(entidade.getComplemento())) {
-                throw new ErroPessoa("Informe um complemento!");
+                throw new ErroNegocio("Informe um complemento!");
             }
             if (StringUtil.ehVazio(entidade.getBairro())) {
-                throw new ErroPessoa("Informe o seu bairro!");
+                throw new ErroNegocio("Informe o seu bairro!");
             }
             if (StringUtil.ehVazio(entidade.getCep())) {
-                throw new ErroPessoa("Informe o seu cep!");
+                throw new ErroNegocio("Informe o seu cep!");
             }
             
             PreparedStatement ps;
-            if (entidade.getId() == null) {
+            if (entidade.getId() == 0) {
                 ps = FabricaConexao.getConexao().prepareStatement("insert into pessoa (nome, cpf, rua, numero, complemento, bairro, cep) values (?,?,?,?,?,?,?)");
             } else {
-                ps = FabricaConexao.getConexao().prepareStatement("update usuario set nome = ?, cpf = ?, rua = ?, numero = ?, complemento = ? bairro = ? cep = ? where id = ?");
-                ps.setInt(4, (int) entidade.getId());
+                ps = FabricaConexao.getConexao().prepareStatement("update pessoa set nome = ?, cpf = ?, rua = ?, numero = ?, complemento = ?, bairro = ?, cep = ?, where id = ?");
+                ps.setInt(8,entidade.getId());
             }
             ps.setString(1, entidade.getNome());
             ps.setString(2, entidade.getCpf());
@@ -57,7 +60,8 @@ public class PessoaDAO {
         }
     }
 
-    public void deletar(Pessoa entidade) throws ErroPessoa, ErroSistema {
+    @Override
+    public void deletar(Pessoa entidade) throws ErroNegocio, ErroSistema {
         
         try {
             PreparedStatement ps;
@@ -65,11 +69,12 @@ public class PessoaDAO {
             ps.setInt(1, (int) entidade.getId());
             ps.execute();
         } catch (SQLException ex) {
-            throw new ErroPessoa("Erro ao tentar deletar! "+ex.getMessage());
+            throw new ErroNegocio("Erro ao tentar deletar! "+ex.getMessage());
         }
     }
 
-    public List<Pessoa> listar() throws ErroPessoa, ErroSistema {
+    @Override
+    public List<Pessoa> listar() throws ErroNegocio, ErroSistema {
         List<Pessoa> entidades = new ArrayList<>();
         try {
             PreparedStatement ps;
@@ -88,10 +93,12 @@ public class PessoaDAO {
             }
             return entidades;
         } catch (SQLException ex) {
-            throw new ErroPessoa("Erro ao tentar buscar! "+ex.getMessage());
+            throw new ErroNegocio("Erro ao tentar buscar! "+ex.getMessage());
         }
     }
+    
 
+    
 }
 
  
