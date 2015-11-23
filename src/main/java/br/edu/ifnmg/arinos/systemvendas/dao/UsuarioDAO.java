@@ -79,7 +79,7 @@ public class UsuarioDAO implements GenericoDAO<Usuario> {
     }
     
     public Usuario buscarUsuario(String login, String senha) throws ErroSistema{
-         Usuario entidade = new Usuario();
+         Usuario entidade = null;
         try {
             PreparedStatement ps;
             ps = FabricaConexao.getConexao().prepareStatement("select * from usuario where login = ? and senha = ?");
@@ -87,6 +87,7 @@ public class UsuarioDAO implements GenericoDAO<Usuario> {
             ps.setString(2, senha);
             ResultSet resultado = ps.executeQuery();
             if(resultado.next()){
+                entidade = new Usuario();
                 entidade.setId(resultado.getInt("id"));
                 entidade.setNome(resultado.getString("nome"));
                 entidade.setLogin(resultado.getString("login"));

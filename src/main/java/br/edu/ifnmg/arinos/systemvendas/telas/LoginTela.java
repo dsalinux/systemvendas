@@ -6,12 +6,9 @@ import br.edu.ifnmg.arinos.systemvendas.util.JsfUtil;
 import br.edu.ifnmg.arinos.systemvendas.util.StringUtil;
 import br.edu.ifnmg.arinos.systemvendas.util.excecao.ErroSistema;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletResponse;
 
 @SessionScoped
 @ManagedBean
@@ -35,7 +32,9 @@ public class LoginTela extends JsfUtil {
                 return;
             }
             usuarioLogado = dao.buscarUsuario(login, senha);
-            addMensagemAviso("Usuário ou senha inválidos!");
+            if(usuarioLogado == null){
+                addMensagemAviso("Usuário ou senha inválidos!");
+            }
         } catch (ErroSistema ex) {
             addMensagemAviso(ex);
         }
