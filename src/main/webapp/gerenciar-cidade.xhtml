@@ -5,7 +5,8 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       template="template.xhtml"
-      xmlns:sv="http://xmlns.jcp.org/jsf/composite/componentes">
+      xmlns:sv="http://xmlns.jcp.org/jsf/composite/componentes"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     
     <h:head></h:head>
     <ui:param name="icon" value="fa-globe"></ui:param>
@@ -17,7 +18,38 @@
             <h:outputLabel value="Nome"></h:outputLabel>
             <p:inputText value="#{cidadeTela.entidade.nome}"></p:inputText>
             <h:outputLabel value="UF"></h:outputLabel>
-            <p:inputText value="#{cidadeTela.entidade.uf}"></p:inputText>
+             <p:selectOneMenu value="#{cidadeTela.entidade.uf}" style="width:125px" >
+            <f:selectItem itemLabel="AC" itemValue="AC" />
+            <f:selectItem itemLabel="AL" itemValue="AL" />
+            <f:selectItem itemLabel="AP" itemValue="AP" />
+            <f:selectItem itemLabel="AM" itemValue="AM" />
+            <f:selectItem itemLabel="BA" itemValue="BA" />
+            <f:selectItem itemLabel="CE" itemValue="CE" />
+            <f:selectItem itemLabel="DF" itemValue="DF" />
+            <f:selectItem itemLabel="ES" itemValue="ES" />
+            <f:selectItem itemLabel="GO" itemValue="GO" />
+            <f:selectItem itemLabel="MA" itemValue="MA" />
+            <f:selectItem itemLabel="MT" itemValue="MT" />
+            <f:selectItem itemLabel="MS" itemValue="MS" />
+            <f:selectItem itemLabel="MG" itemValue="MG" />
+            <f:selectItem itemLabel="PA" itemValue="PA" />
+            <f:selectItem itemLabel="PB" itemValue="PB" />
+            <f:selectItem itemLabel="PR" itemValue="PR" />
+            <f:selectItem itemLabel="PE" itemValue="PE" />
+            <f:selectItem itemLabel="PI" itemValue="PI" />
+            <f:selectItem itemLabel="RJ" itemValue="RJ" />
+            <f:selectItem itemLabel="RN" itemValue="RN" />
+            <f:selectItem itemLabel="RS" itemValue="RS" />
+            <f:selectItem itemLabel="RO" itemValue="RO" />
+            <f:selectItem itemLabel="RR" itemValue="RR" />
+            <f:selectItem itemLabel="SC" itemValue="SC" />
+            <f:selectItem itemLabel="SP" itemValue="SP" />
+            <f:selectItem itemLabel="SE" itemValue="SE" />
+            <f:selectItem itemLabel="TO" itemValue="TO" />
+            
+            
+        </p:selectOneMenu>
+ 
             <h:outputLabel value="Pais"></h:outputLabel>
             <p:inputText value="#{cidadeTela.entidade.pais}"></p:inputText>
         </h:panelGrid>

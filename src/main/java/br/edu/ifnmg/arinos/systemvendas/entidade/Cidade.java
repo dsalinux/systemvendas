@@ -11,7 +11,7 @@ public class Cidade {
     private Integer id;
     private String nome;
     private String uf;
-    private String pais;
+    private String pais = "Brasil";
 
     public Integer getId() {
         return id;
