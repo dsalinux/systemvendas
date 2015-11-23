@@ -77,5 +77,25 @@ public class UsuarioDAO implements GenericoDAO<Usuario> {
             throw new ErroSistema("Erro ao tentar buscar! "+ex.getMessage());
         }
     }
+    
+    public Usuario buscarUsuario(String login, String senha) throws ErroSistema{
+         Usuario entidade = new Usuario();
+        try {
+            PreparedStatement ps;
+            ps = FabricaConexao.getConexao().prepareStatement("select * from usuario where login = ? and senha = ?");
+            ps.setString(1, login);
+            ps.setString(2, senha);
+            ResultSet resultado = ps.executeQuery();
+            if(resultado.next()){
+                entidade.setId(resultado.getInt("id"));
+                entidade.setNome(resultado.getString("nome"));
+                entidade.setLogin(resultado.getString("login"));
+                entidade.setSenha(resultado.getString("senha"));
+            }
+            return entidade;
+        } catch (SQLException ex) {
+            throw new ErroSistema("Erro ao tentar buscar! "+ex.getMessage());
+        }
+    }
 
 }
