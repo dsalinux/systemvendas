@@ -7,6 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>System Vendas</title>
+        <meta charset="UTF-8"></meta>
         <h:outputStylesheet library="css" name="basico.css"></h:outputStylesheet>
     </h:head>
     <h:body>
@@ -16,6 +17,7 @@
                     <div class="menu ui-menu ui-menubar ui-widget ui-widget-content">
                         <h:form>
                             <h:graphicImage class="logo" name="logo.png" library="imagens"></h:graphicImage>
+                            <p:remoteCommand rendered="#{loginTela.estaLogado() == false}" autoRun="true" action="#{loginTela.redirecionarTelaLogin()}"></p:remoteCommand>
                             <p:menubar style="float: left;margin-top: 2px">
                                 <p:menuitem icon="fa fa-home" value="Home" url="index.jsf"></p:menuitem>
                                 <p:submenu label="Gerenciar" icon="fa fa-gear">
@@ -23,9 +25,13 @@
                                     <p:menuitem value="Conta" icon="fa fa-globe" url="gerenciar-conta.jsf"></p:menuitem>
                                     <p:menuitem value="Movimento Caixa" icon="fa fa-globe" url="gerenciar-movimentocaixa.jsf"></p:menuitem>
                                     <p:menuitem value="Pessoa" icon="fa fa-globe" url="gerenciar-pessoa.jsf"></p:menuitem>
+                                    <p:menuitem value="Tipo Pessoa" icon="fa fa-globe" url="gerenciar-tipopessoa.jsf"></p:menuitem>
                                     <p:menuitem value="Venda" icon="fa fa-globe" url="gerenciar-venda.jsf"></p:menuitem>
                                     <p:menuitem value="Produto" icon="fa fa-globe" url="gerenciar-produto.jsf"></p:menuitem>
                                     <p:menuitem value="Cidade" icon="fa fa-globe" url="gerenciar-cidade.jsf"></p:menuitem>
+                                </p:submenu>
+                                <p:submenu label="Bem vindo #{loginTela.usuarioLogado.nome}">
+                                    <p:menuitem value="Sair" action="#{loginTela.deslogar()}" ajax="false"></p:menuitem>
                                 </p:submenu>
                             </p:menubar>
                         </h:form>

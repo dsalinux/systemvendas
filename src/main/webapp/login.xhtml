@@ -16,16 +16,17 @@
     <h:body>
         <p:dialog visible="true" width="600" height="300">
             <h:form>
+                <p:remoteCommand action="#{loginTela.redirecionarLogado()}" update="@all" autoRun="true" rendered="#{loginTela.estaLogado()}"></p:remoteCommand>
                 <h:panelGrid columns="3">
                     <h:graphicImage library="imagens" name="logo-vertical.png" style="max-width: 200px; margin: 40px; display: block;"></h:graphicImage>
                     <p:separator style="height: 250px"></p:separator>
                     <h:panelGrid columns="2">
                         <h:outputLabel value="Login"></h:outputLabel>
-                        <p:inputText></p:inputText>
+                        <p:inputText value="#{loginTela.login}"></p:inputText>
                         <h:outputLabel value="Senha"></h:outputLabel>
-                        <p:password></p:password>
+                        <p:password value="#{loginTela.senha}"></p:password>
                         <h:outputText></h:outputText>
-                        <p:commandButton value="Entrar"></p:commandButton>
+                        <p:commandButton value="Entrar" action="#{loginTela.logar()}" ajax="false"></p:commandButton>
                     </h:panelGrid>
                 </h:panelGrid>
             </h:form>
