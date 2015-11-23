@@ -90,7 +90,7 @@ public class Instalador implements ServletContextListener {
         + "  `cep` CHAR(10) NOT NULL,\n"
         + "  `cidade_id` INT(11) NOT NULL,\n"
         + "  `tipo_pessoa_id` INT(11) NOT NULL,\n"
-        + "  `data_desativacao` DATETIME NULL DEFAULT NULL,\n"
+        + "  `data_desativacao` DATETIME NULL,\n"
         + "  PRIMARY KEY (`id`),\n"
         + "  INDEX `fk_pessoa_tipo_pessoa_idx` (`tipo_pessoa_id` ASC),\n"
         + "  INDEX `fk_pessoa_cidade_idx` (`cidade_id` ASC),\n"
@@ -110,7 +110,7 @@ public class Instalador implements ServletContextListener {
         //Criando table venda
         "CREATE TABLE IF NOT EXISTS `system-vendas`.`venda` (\n"
         + "  `id` INT(11) NOT NULL AUTO_INCREMENT,\n"
-        + "  `data` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n"
+        + "  `data` DATETIME NOT NULL,\n"
         + "  `observacao` VARCHAR(200) NULL DEFAULT NULL,\n"
         + "  `valor_total` DECIMAL(9,2) NULL DEFAULT NULL,\n"
         + "  `cliente_id` INT(11) NOT NULL,\n"
@@ -219,6 +219,7 @@ public class Instalador implements ServletContextListener {
                     s.execute(CREATE_TABLES[i]);
                     System.out.println("Tabela " + i + " criada!");
                 }
+                FabricaConexao.fecharConexao();
                 PreparedStatement psUsuario = FabricaConexao.getConexao().prepareStatement("insert into usuario (nome, login, senha) values (?,?,?)");
                 psUsuario.setString(1, "Admin");
                 psUsuario.setString(2, "admin");
