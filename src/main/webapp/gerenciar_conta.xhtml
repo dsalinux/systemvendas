@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:sv="http://xmlns.jcp.org/jsf/composite/componentes"
+      template="template.xhtml">
+    
+    <h:head></h:head>
+    <ui:param name="icon" value="ícone do usuário" ></ui:param>
+    <ui:param name="titulo" value="Gerenciar Conta"></ui:param>
+    
+   <h:form>
+        <sv:tolbarCrud crudTela="#{ContaTela}"/>
+        <h:panelGrid columns="1" rendered="#{!ContaTela.ehPesquisando()}">
+                <h:outputLabel value="Nome"></h:outputLabel>
+                <p:inputText value="#{ContaTela.entidade.nome}"></p:inputText>
+        </h:panelGrid>
+            <p:dataTable value="#{ContaTela.listaEntidades}" var="ent" rendered="#{ContaTela.ehPesquisando()}" emptyMessage="Lista vazia!!!">
+            <p:column>
+                <p:commandButton icon="icon-edit-1" action="#{ContaTela.editar(ent)}" update="@form"></p:commandButton>
+                <p:commandButton icon="icon-trash-1" action="#{ContaTela.deletar(ent)}" update="@form"></p:commandButton>
+            </p:column>
+            <p:column headerText="Nome" sortBy="#{ent.nome}" filterBy="#{ent.nome}">
+                #{ent.nome}
+            </p:column>
+            </p:dataTable>
+    </h:form>
+</ui:decorate>
+

@@ -6,12 +6,11 @@ import java.util.Objects;
  *
  * @author danilo
  */
-public class Cidade {
-    
+public class TipoPessoa {
+
     private Integer id;
     private String nome;
-    private String uf;
-    private String pais = "Brasil";
+    
 
     public Integer getId() {
         return id;
@@ -29,26 +28,11 @@ public class Cidade {
         this.nome = nome;
     }
 
-    public String getUf() {
-        return uf;
-    }
-
-    public void setUf(String uf) {
-        this.uf = uf;
-    }
-
-    public String getPais() {
-        return pais;
-    }
-
-    public void setPais(String pais) {
-        this.pais = pais;
-    }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 41 * hash + Objects.hashCode(this.id);
+        int hash = 3;
+        hash = 59 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -60,11 +44,13 @@ public class Cidade {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Cidade other = (Cidade) obj;
+        final TipoPessoa other = (TipoPessoa) obj;
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
     }
+    
+    
     
 }

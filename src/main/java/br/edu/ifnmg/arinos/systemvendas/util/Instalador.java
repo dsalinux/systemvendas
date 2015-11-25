@@ -1,3 +1,4 @@
+
 package br.edu.ifnmg.arinos.systemvendas.util;
 
 import br.edu.ifnmg.arinos.systemvendas.util.excecao.ErroSistema;
