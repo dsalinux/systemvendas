@@ -27,15 +27,16 @@
                 <p:commandButton icon="fa fa-pencil" action="#{vendaTela.editar(ent)}" update="@form"></p:commandButton>
                 <p:commandButton icon="fa fa-trash-o" action="#{vendaTela.deletar(ent)}" update="@form"></p:commandButton>
             </p:column>
-            <p:column headerText="Nome" sortBy="#{ent.data}" filterBy="#{ent.data}">
+            <p:column headerText="Data" sortBy="#{ent.data}" filterBy="#{ent.data}">
                 #{ent.data}
             </p:column>
              <p:column headerText="Observação" sortBy="#{ent.observacao}" filterBy="#{ent.observacao}">
                 #{ent.observacao}
-                 <p:column headerText="Valor Total" sortBy="#{ent.valor_total}" filterBy="#{ent.valor_total}">
+             </p:column>
+             <p:column headerText="Valor Total" sortBy="#{ent.valor_total}" filterBy="#{ent.valor_total}">
                 #{ent.valor_total}
                  
-            </p:column>
+
             </p:column>
         </p:dataTable>
     </h:form>
