@@ -17,13 +17,12 @@
                 <h:outputLabel value="Nome"></h:outputLabel>
                 <p:inputText value="#{contaTela.entidade.nome}"></p:inputText>
         </h:panelGrid>
-            <p:dataTable value="#{contaTela.listaEntidades}" var="ent" rendered="#{contaTela.ehPesquisando()}" emptyMessage="Lista vazia!!!">
+        <p:dataTable value="#{contaTela.listaComEntidades}" var="ent" rendered="#{contaTela.ehPesquisando()}" emptyMessage="Lista vazia!!!">
             <p:column>
                 <p:commandButton icon="icon-edit-1" action="#{contaTela.editar(ent)}" update="@form"></p:commandButton>
                 <p:commandButton icon="icon-trash-1" action="#{contaTela.deletar(ent)}" update="@form"></p:commandButton>
-                <p:commandButton></p:commandButton>
             </p:column>
-                <p:column headerText="Nome" visible="" sortBy="#{ent.nome}" filterBy="#{ent.nome}">
+                <p:column headerText="Nome" sortBy="#{ent.nome}" filterBy="#{ent.nome}">
                 #{ent.nome}
             </p:column>
             </p:dataTable>
