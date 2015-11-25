@@ -21,17 +21,25 @@
             <h:outputLabel value="Valor"></h:outputLabel>
             <p:inputText value="#{movimentocaixaTela.entidade.valor}"></p:inputText>
             <h:outputLabel value="Data"></h:outputLabel>
-            <p:inputText value="#{movimentocaixaTela.entidade.data}"></p:inputText>
+            <p:calendar value="#{movimentocaixaTela.entidade.data}"></p:calendar>
         </h:panelGrid>
         <p:dataTable value="#{movimentocaixaTela.listaComEntidades}" var="ent" rendered="#{movimentocaixaTela.ehPesquisando()}" emptyMessage="Nada na lista ainda!">
             <p:column>
                 <p:commandButton icon="fa fa-pencil" action="#{movimentocaixaTela.editar(ent)}" update="@form"></p:commandButton>
                 <p:commandButton icon="fa fa-trash-o" action="#{movimentocaixaTela.deletar(ent)}" update="@form"></p:commandButton>
+                 </p:column>
+             <p:column headerText="Descricao" sortBy="#{ent.descricao}" filterBy="#{ent.descricao}">
+                #{ent.descricao}
             </p:column>
-            <p:column headerText="Nome" sortBy="#{ent.nome}" filterBy="#{ent.nome}">
-                #{ent.nome}
+            <p:column headerText="Tipo_movimento" sortBy="#{ent.tipo_movimento}" filterBy="#{ent.tipo_movimento}">
+                #{ent.tipo_movimento}
+            </p:column>
+            <p:column headerText="Valor" sortBy="#{ent.valor}" filterBy="#{ent.valor}">
+                #{ent.valor}
+            </p:column>
+            <p:column headerText="Data" sortBy="#{ent.data}" filterBy="#{ent.data}">
+                #{ent.data}
             </p:column>
         </p:dataTable>
     </h:form>
 </ui:decorate>
-

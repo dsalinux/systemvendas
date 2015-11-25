@@ -5,6 +5,7 @@ import br.edu.ifnmg.arinos.systemvendas.util.FabricaConexao;
 import br.edu.ifnmg.arinos.systemvendas.util.StringUtil;
 import br.edu.ifnmg.arinos.systemvendas.util.excecao.ErroNegocio;
 import br.edu.ifnmg.arinos.systemvendas.util.excecao.ErroSistema;
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,6 +26,10 @@ public class MovimentoCaixaDAO implements GenericoDAO<MovimentoCaixa> {
             if (StringUtil.ehVazio(entidade.getValor())) {
                 throw new ErroNegocio("Informe o Valor!");
             }
+            if (entidade.getData() == null) {
+                throw new ErroNegocio("Informe a data!");
+            } else {
+            }
             
             PreparedStatement ps;
             if (entidade.getId() == null) {
@@ -36,6 +41,7 @@ public class MovimentoCaixaDAO implements GenericoDAO<MovimentoCaixa> {
             ps.setString(1, entidade.getDescricao());
             ps.setString(2, entidade.getTipo_movimento());
             ps.setString(3, entidade.getValor());
+            ps.setDate(4, new java.sql.Date(entidade.getData().getTime()));
             ps.execute();
         } catch (SQLException ex) {
             throw new ErroSistema("Erro ao tentar salvar Movimento Caixa! " + ex.getMessage());
@@ -59,7 +65,7 @@ public class MovimentoCaixaDAO implements GenericoDAO<MovimentoCaixa> {
         List<MovimentoCaixa> entidades = new ArrayList<MovimentoCaixa>();
         try {
             PreparedStatement ps;
-            ps = FabricaConexao.getConexao().prepareStatement("select * from usuario");
+            ps = FabricaConexao.getConexao().prepareStatement("select * from movimento_caixa");
             ResultSet resultado = ps.executeQuery();
             while(resultado.next()){
                 MovimentoCaixa entidade = new MovimentoCaixa();
@@ -67,6 +73,7 @@ public class MovimentoCaixaDAO implements GenericoDAO<MovimentoCaixa> {
                 entidade.setDescricao(resultado.getString("descricao"));
                 entidade.setTipo_movimento(resultado.getString("tipo_movimento"));
                 entidade.setValor(resultado.getString("valor"));
+                entidade.setData(resultado.getDate("data"));
                 entidades.add(entidade);
             }
             return entidades;

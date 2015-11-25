@@ -46,7 +46,6 @@ public class MovimentoCaixa {
     }
 
     public Date getData() {
-        Date data = null;
         return data;
     }
 
