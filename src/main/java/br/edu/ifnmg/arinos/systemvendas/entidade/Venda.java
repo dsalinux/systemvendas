@@ -16,7 +16,7 @@ public class Venda {
     private Integer id;
     private Date data;
     private String observacao;
-    private float valor_total;
+    private Float valor_total;
 
     public Integer getId() {
         return id;
